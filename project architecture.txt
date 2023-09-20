@@ -2,6 +2,9 @@ oasis-telecommunications
 ├── node_modules
 ├── public
 ├── routers
+│   ├── history.js
+│   ├── pageLoader.js
+│   └── router.js
 ├── src
 │   ├── assets
 │   ├── components
@@ -13,29 +16,26 @@ oasis-telecommunications
 │   │   ├── footer.css
 │   │   ├── header.css
 │   │   └── style.css
-│   ├── utils
-│   │   ├── 
-│   │   ├── 
-│   │   ├── 
-│   │   └── 
 │   └── views
 │       ├── admin
-│       │   ├── 
-│       │   ├── 
-│       │   ├── 
-│       │   ├── 
-│       │   ├── 
-│       │   ├── 
-│       │   ├── 
-│       │   └── 
+│       │   └── home.js
 │       └── client
-│           ├── 
-│           ├── 
-│           ├── 
-│           ├── 
-│           ├── 
-│           ├── 
-│           ├── 
-│           └── 
+│           ├── accountdashboard.js
+│           ├── accountsettings.js
+│           ├── balance.js
+│           ├── invoice.js
+│           ├── logout.js
+│           ├── paymentgateway.js
+│           ├── planchange.js
+│           ├── plans.js
+│           ├── receipts.js
+│           ├── support.js
+│           └── transactionHistory.js
 ├── index.html
-└── main.js
+├── main.js
+└── firebase
+    ├── checkauthstate.js
+    ├── firebase-config.js
+    ├── login.js
+    ├── signup.js
+    └── logout.js
