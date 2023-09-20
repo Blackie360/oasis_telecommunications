@@ -6,6 +6,8 @@ import { render as contactUsRender } from '../views/contactUs';
 import { render as myaccountRender } from '../views/myaccount';
 import { render as signUpRender } from '../views/signUp';
 import { render as loginRender } from '../views/login';
+import { render as accountDashboardRender } from '../views/client/accountDashboard';
+import { render as adminHomeRender } from '../views/admin/home';
 
 
 export const loadPage = async (page) => {
@@ -27,6 +29,8 @@ export const loadAllPages = async () => {
   pages.myaccount = myaccountRender();
   pages.signUp = signUpRender();
   pages.login = loginRender();
+  pages.accountDashboard = accountDashboardRender();
+  pages.adminHome = adminHomeRender();
   
   return pages;
 };
