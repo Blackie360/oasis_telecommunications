@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "test": "jest",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "sass": "^1.66.1",
     "vite": "^4.3.9"
   },
