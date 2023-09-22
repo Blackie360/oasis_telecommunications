@@ -1,29 +1,31 @@
-// signup.js
+const signupForm = document.querySelector('form');
+const firstNameInput = document.querySelector('#first_name');
+const lastNameInput = document.querySelector('#last_name');
+const emailInput = document.querySelector('#email');
+const passwordInput = document.querySelector('#password');
+const passwordConfirmInput = document.querySelector('#password-confirm');
 
-import { database, ref, push } from './firebase';
-
-const signUpWithEmailPassword = (email, password, firstName, lastName) => {
-  return new Promise((resolve, reject) => {
-    // Create a new user with email and password
-    auth.createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        const timestamp = Date.now();
-        const userRef = push(ref(database, 'users'), {
-          email: user.email,
-          firstName: firstName,
-          lastName: lastName,
-          timestamp: timestamp
+signupForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const firstName = firstNameInput.value.trim();
+    const lastName = lastNameInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    const passwordConfirm = passwordConfirmInput.value.trim();
+    if (firstName === '' || lastName === '' || email === '' || password === '' || passwordConfirm === '') {
+        alert('Please fill in all fields.');
+        return;
+    }
+    if (password !== passwordConfirm) {
+        alert('Passwords do not match.');
+        return;
+    }
+    firebaseInstance.signupWithEmailPassword(email, password, firstName, lastName)
+        .then(() => {
+            alert('Sign up successful!');
+            signupForm.reset();
+        })
+        .catch((error) => {
+            alert(`Error signing up: ${error.message}`);
         });
-        resolve(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        reject(errorMessage);
-      });
-  });
-};
-
-export { signUpWithEmailPassword };
+});

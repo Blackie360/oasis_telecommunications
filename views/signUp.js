@@ -1,6 +1,3 @@
-//IMPORT SIGNUP FUNCTION FROM FIREBASE
-import { signUpWithEmailPassword } from '../firebase/signup.js';   
-
 // Sign up page view
 export const render = () => {
     const div = document.createElement('div');
