@@ -1,8 +1,5 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut} from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js";
-import { getDatabase, ref, set, update } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-database.js";
+//IMPORT SIGNUP FUNCTION FROM FIREBASE
+import { signUpWithEmailPassword } from '../firebase/signup.js';   
 
 // Sign up page view
 export const render = () => {
@@ -80,56 +77,7 @@ export const render = () => {
             </main>
         </div>
     `;
-
     return div;
 };
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyB6v7ZybUQe_Ywj2hyFKRmU_cfwlzJlV1w",
-    authDomain: "oasis-telecom.firebaseapp.com",
-    databaseURL: "https://oasis-telecom-default-rtdb.firebaseio.com",
-    projectId: "oasis-telecom",
-    storageBucket: "oasis-telecom.appspot.com",
-    messagingSenderId: "721689200142",
-    appId: "1:721689200142:web:c853b8e48304903e22de5f"
-  };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth();
-const database = getDatabase(app);
-
-// Function to handle the signup process
-const handleSignUp = () => {
-    const fname = document.getElementById("first_name").value;
-    const lname = document.getElementById("last_name").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            console.log("User signed up:", user);
-
-            // TODO: Add your database logic here
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.error("Error:", errorCode, errorMessage);
-        });
-};
-
-// Add event listener to the signup button
-document.addEventListener("DOMContentLoaded", () => {
-    const submitSignup = document.getElementById("signup_btn");
-    if (submitSignup) {
-        submitSignup.addEventListener("click", (e) => {
-            e.preventDefault();
-            handleSignUp();
-        });
-    }
-});
