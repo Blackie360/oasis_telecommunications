@@ -27,18 +27,19 @@ const handle404 = () => {
           <div class="error-template text-center">
               <h1>Oops!</h1>
               <h2>404 Not Found</h2>
+              <img src="../src/assets/images/error.png" alt="404 Not Found" class="img-responsive small-image">
               <div class="error-details">
                   Sorry, an error has occurred, Requested page not found!
               </div>
               <div class="error-actions">
                   <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-                      Take Me Home </a><a href="nav-link" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+                      Take Me Home </a>
+                  <a href="nav-link" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
               </div>
           </div>
       </div>
   </div>
-</div>
-`;
+</div>`;
 };
 
 // Define and export onNavClick handler
@@ -68,7 +69,6 @@ export const onNavClick = async (pathname) => {
   // Update the URL using the pushState function from history
   pushState({}, '', pathname);
 };
-
 
 const handleRouting = () => {
   const pathname = window.location.pathname;

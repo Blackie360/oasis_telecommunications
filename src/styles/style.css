@@ -36,6 +36,10 @@ body {
   color: #212529 !important; /* Hover text color (important to override Bootstrap styles) */
 }
 
+.small-image {
+  max-width: 500px; /* Adjust the size as needed */
+  height: auto;
+}
 
 
 
