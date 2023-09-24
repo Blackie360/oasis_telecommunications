@@ -1,13 +1,13 @@
 // pageLoader.js
-import { render as homeRender } from '../views/home';
-import { render as servicesRender } from '../views/services';
-import { render as aboutRender } from '../views/about';
-import { render as contactUsRender } from '../views/contactUs';
-import { render as myaccountRender } from '../views/myaccount';
-import { render as signUpRender } from '../views/signUp';
-import { render as loginRender } from '../views/login';
-import { render as accountDashboardRender } from '../views/client/accountDashboard';
-import { render as adminHomeRender } from '../views/admin/home';
+import { renderHomePage as homeRender } from '../views/home';
+import { renderSerivcesPage as servicesRender } from '../views/services';
+import { renderAboutPage as aboutRender } from '../views/about';
+import { renderContactPage as contactUsRender } from '../views/contactUs';
+import { renderMyAccountPage as myaccountRender } from '../views/myaccount';
+import { renderSignUpPage as signUpRender } from '../views/signUp';
+import { renderLoginPage as loginRender } from '../views/login';
+import { renderAccountDashboard as accountDashboardRender } from '../views/client/accountDashboard';
+import { renderHomePage as adminHomeRender } from '../views/admin/home';
 
 
 export const loadPage = async (page) => {

@@ -1,5 +1,5 @@
 //client dashboard page view
-export const render = () => {
+export const renderAccountDashboard = () => {
     const div = document.createElement("div");
     div.innerHTML = `
     <!-- Hero Section -->

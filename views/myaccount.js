@@ -1,5 +1,5 @@
 //contact us page view
-export const render = () => {
+export const renderMyAccountPage = () => {  
     const div = document.createElement('div');
     div.innerHTML = `
     <link rel="stylesheet" href="/src/styles/style.css">

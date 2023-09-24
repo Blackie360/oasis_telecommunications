@@ -1,5 +1,5 @@
 //about page view
-export const render = () => {
+export const renderAboutPage = () => {
     const div = document.createElement('div');
     div.innerHTML = `
     <div class="container my-5">

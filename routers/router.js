@@ -20,7 +20,7 @@ const loadRoutes = async () => {
 };
 
 const handle404 = () => {
-  const root = document.getElementById('root');
+  const root = document.getElementById('content');
   root.innerHTML = `<div class="container monochrome-theme">
   <div class="row">
       <div class="col-md-12">

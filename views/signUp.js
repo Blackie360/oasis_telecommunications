@@ -1,5 +1,5 @@
 // Sign up page view
-export const render = () => {
+export const  renderSignUpPage= () => {
     const div = document.createElement('div');
     div.innerHTML = `
         <link rel="stylesheet" href="/src/styles/style.css">
@@ -53,3 +53,6 @@ export const render = () => {
     `;
     return div;
 };
+console.log('Sign up page rendered');
+
+

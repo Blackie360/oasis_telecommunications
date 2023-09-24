@@ -1,6 +1,6 @@
 // contact us view
 
-export const render = () => {
+export const renderContactPage = () => {
     const div = document.createElement('div');
     div.innerHTML = `
       <div class="container mt-5">
