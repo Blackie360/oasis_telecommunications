@@ -53,6 +53,61 @@ export const  renderSignUpPage= () => {
     `;
     return div;
 };
-console.log('Sign up page rendered');
+// Event listener function for the sign-up button
+const handleSignUp = (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+  
+    console.log('Button clicked'); // Log a message to the console when the button is clicked
+    
+    // You can add your sign-up logic here
+    // For example, you can access form elements and their values like this:
+    const firstName = document.getElementById('first_name').value;
+    const lastName = document.getElementById('last_name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('password-confirm').value;
+    
+    const signUp = (firstName, lastName, email, password, confirmPassword) => {
+        // Perform sign-up action using Firebase Auth
+        const auth = firebase.auth();
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // Redirect to profile page
+                window.location.href = '/profile';
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert(errorMessage);
+            });
 
+        // Log the form values
+        console.log({
+            firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword
+        });
+    };
+    signUp(firstName, lastName, email, password, confirmPassword);
+  };
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    // Your event listener setup code here
+    const signUpButton = document.getElementById('signup_btn');
+    console.log('Sign-up button:', signUpButton);
+    
+    if (signUpButton) {
+      signUpButton.addEventListener('click', handleSignUp);
+    } else {
+      console.log('Sign-up button not found in the DOM.');
+    }
+  });
+  
+  console.log('Sign up page rendered');
+  
+  
 

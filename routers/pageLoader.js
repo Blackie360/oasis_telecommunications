@@ -19,7 +19,7 @@ export const loadAllPages = async () => {
   const pages = {};
 
   // Load index.html from the root directory
-  pages.home = await loadPage('index.html');
+  //pages.home = await loadPage('index.html');
 
   // Load other pages from the 'views' directory
   pages.home = homeRender();

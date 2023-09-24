@@ -1,145 +1,183 @@
-here is the project architecture:
-```oasis-telecommunications
-├── node_modules
-├── public
-├── routers
-│   ├── history.js
-│   ├── pageLoader.js
-│   └── router.js
-├── src
-│   ├── assets
-│   ├── components
-│   │   ├── header.js
-│   │   ├── footer.js
-│   │   ├── logoutbtn.js
-│   │   └── homepage.js
-│   ├── styles
-│   │   ├── footer.css
-│   │   ├── header.css
-│   │   └── style.css
-│   └── views
-│       ├── admin
-│       │   └── home.js
-│       └── client
-│           ├── accountdashboard.js
-│           ├── accountsettings.js
-│           ├── balance.js
-│           ├── invoice.js
-│           ├── logout.js
-│           ├── paymentgateway.js
-│           ├── planchange.js
-│           ├── plans.js
-│           ├── receipts.js
-│           ├── support.js
-│           └── transactionHistory.js
-├── index.html
-├── main.js
-└── firebase
-    ├── checkauthstate.js
-    ├── firebase-config.js
-    ├── login.js
-    ├── signup.js
-    └── logout.js
-```
+here is how my website project works.
+i am using vite for developement with vanila javascript.
+the entry point of my page is index.html with main.js as the entry script.  
+--index.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./src/assets/oasis logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
-page view for signUp in views folder:
-// Sign up page view
-export const render = () => {
-    const div = document.createElement('div');
-    div.innerHTML = `
-        <link rel="stylesheet" href="/src/styles/style.css">
-        <div id="root">
-            <main class="py-3">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="mt-0 card-title border-bottom text-dark">Sign Up</h4>
+    <title>Oasis Telecommunications</title>
+  </head>
+  <body class="">
+   
+      <div id="header"></div>
+      <div id="content"></div>
+      <div id="footer"></div>
 
-                                    <form method="" action="">
-                                        <input type="hidden" name="_token" />
-                                        <div class="form-group row">
-                                            <div class="col-md-12">
-                                                <input id="first_name" type="text" placeholder="First Name"
-                                                    class="form-control" name="first_name" value="" 
-                                                    autocomplete="first_name" autofocus />
-                                            </div>
-                                        </div>
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/routers/history.js"></script>
+    <script type="module" src="/routers/router.js"></script>
+  </body>
+</html>
 
-                                        <div class="form-group row">
-                                            <div class="col-md-12">
-                                                <input id="last_name" type="text" placeholder="Last Name"
-                                                    class="form-control" name="last_name" value="" 
-                                                    autocomplete="last_name" autofocus />
-                                            </div>
-                                        </div>
+main.js
+import './src/styles/style.css';
+import './src/styles/header.css';
+import './src/styles/footer.css';
+import { createHeader } from './src/components/header';
+import { createFooter } from './src/components/footer';
+import './src/styles/scss/styles.scss';
 
-                                        <div class="form-group row">
-                                            <div class="col-md-12">
-                                                <input id="email" type="email" placeholder="Email" class="form-control"
-                                                    name="email" value=""  autocomplete="email" />
-                                            </div>
-                                        </div>
+// Import Bootstrap's JS (assuming you're using ES6 modules)
+import * as bootstrap from 'bootstrap';
 
-                                        <div class="form-group row">
-                                            <div class="col-md-12">
-                                                <input id="password" type="password" placeholder="Password"
-                                                    class="form-control" name="password" 
-                                                    autocomplete="new-password" />
-                                            </div>
-                                        </div>
+const footerContent = document.getElementById('footer');
+const headerContent = document.getElementById('header');
 
-                                        <div class="form-group row">
-                                            <div class="col-md-12">
-                                                <input id="password-confirm" type="password" placeholder="Confirm Password"
-                                                    class="form-control" name="password_confirmation" 
-                                                    autocomplete="new-password" />
-                                            </div>
-                                        </div>
 
-                                        <div class="form-group row mb-0">
-                                            <div class="col-md-12">
-                                                <button type="submit" id="signup_btn" class="text-decoration-none px-3 py-1 nav-link ms-2 custom-btn-style-shadow">Register</button>
-                                            </div>
-                                        </div>
-                                        <!--Already have an account link to login page-->
-                                        <div class="form-group row mb-0">
-                                            <div class="col-md-12">
-                                                <a href="/login" id="login" class="btn btn-link nav-link">Already have an account, Sign In</a>
-                                            </div>
-                                        </div>
+// Create and insert the header component
+createHeader(headerContent);
 
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    `;
-    return div;
+// Create and insert the footer component
+createFooter(footerContent);
+
+the header has been created and inserted into the DOM.
+it has naviagtion links for different pages.
+the pages are in the views directory and are loaded dynamically using the pageLoader.js file and then rendered using router.js.
+pageLoader.js
+// pageLoader.js
+import { renderHomePage as homeRender } from '../views/home';
+import { renderSerivcesPage as servicesRender } from '../views/services';
+import { renderAboutPage as aboutRender } from '../views/about';
+import { renderContactPage as contactUsRender } from '../views/contactUs';
+import { renderMyAccountPage as myaccountRender } from '../views/myaccount';
+import { renderSignUpPage as signUpRender } from '../views/signUp';
+import { renderLoginPage as loginRender } from '../views/login';
+import { renderAccountDashboard as accountDashboardRender } from '../views/client/accountDashboard';
+import { renderHomePage as adminHomeRender } from '../views/admin/home';
+
+
+export const loadPage = async (page) => {
+  const response = await fetch(page);
+  return response.text();
 };
 
+export const loadAllPages = async () => {
+  const pages = {};
 
-// firebase config file in firebase folder
-firebase-config.js
+  // Load index.html from the root directory
+  pages.home = await loadPage('index.html');
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyB6v7ZybUQe_Ywj2hyFKRmU_cfwlzJlV1w",
-authDomain: "oasis-telecom.firebaseapp.com",
-databaseURL: "https://oasis-telecom-default-rtdb.firebaseio.com",
-projectId: "oasis-telecom",
-storageBucket: "oasis-telecom.appspot.com",
-messagingSenderId: "721689200142",
-appId: "1:721689200142:web:c853b8e48304903e22de5f"
+  // Load other pages from the 'views' directory
+  pages.home = homeRender();
+  pages.about = aboutRender();
+  pages.services = servicesRender();
+  pages.contact = contactUsRender();
+  pages.myaccount = myaccountRender();
+  pages.signUp = signUpRender();
+  pages.login = loginRender();
+  pages.accountDashboard = accountDashboardRender();
+  pages.adminHome = adminHomeRender();
+  
+  return pages;
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+router.js
+// router.js
 
+import { loadAllPages } from './pageLoader';
+import { onPopState, pushState } from './history'; // Import history-related functions
 
-help me create the sign up functionality for signup with firebase using the above files and reference from the project architecture. import the files that need to be used in the different files. 
-the DOM is already created for the sign up page, and it should be loaded first then the signup functionality should be implemented.
+const routes = new Map();
+
+const loadRoutes = async () => {
+  // Load your routes here
+  const pages = await loadAllPages();
+  routes.set('/', pages.home);
+  routes.set('/about', pages.about);
+  routes.set('/services', pages.services);
+  routes.set('/contact', pages.contact);
+  routes.set('/myaccount', pages.myaccount);
+  routes.set('/signUp', pages.signUp);
+  routes.set('/login', pages.login);
+  routes.set('/client', pages.accountDashboard);
+  routes.set('/admin', pages.adminHome);
+};
+
+const handle404 = () => {
+  const root = document.getElementById('content');
+  root.innerHTML = `<div class="container monochrome-theme">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="error-template text-center">
+              <h1>Oops!</h1>
+              <h2>404 Not Found</h2>
+              <img src="../src/assets/images/error.png" alt="404 Not Found" class="img-responsive small-image">
+              <div class="error-details">
+                  Sorry, an error has occurred, Requested page not found!
+              </div>
+              <div class="error-actions">
+                  <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                      Take Me Home </a>
+                  <a href="nav-link" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>`;
+};
+
+// Function to conditionally render the page based on the route
+const renderPage = (pathname) => {
+  const root = document.getElementById('content');
+
+  if (!routes.has(pathname)) {
+    handle404();
+    return;
+  }
+
+  const pageContent = routes.get(pathname);
+
+  // Convert the HTML element to a string using outerHTML
+  root.innerHTML = pageContent.outerHTML;
+
+  // Hide the "Selfcare" link when on the "/signUp" or "/login" pages
+  const myAccountLink = document.getElementById('myAccount');
+  if (myAccountLink) {
+    if (pathname === '/signUp' || pathname === '/login' || pathname === '/myaccount') {
+      myAccountLink.style.display = 'none';
+    } else {
+      myAccountLink.style.display = 'block';
+    }
+  }
+};
+
+// Define and export onNavClick handler
+export const onNavClick = (pathname) => {
+  // Update the URL using the pushState function from history
+  pushState({}, '', pathname);
+  // Conditionally render the page
+  renderPage(pathname);
+};
+
+const handleRouting = () => {
+  const pathname = window.location.pathname;
+  renderPage(pathname);
+};
+
+const router = async () => {
+  await loadRoutes();
+
+  // Set up routing
+  window.addEventListener('popstate', handleRouting);
+
+  // Trigger initial routing
+  handleRouting();
+};
+
+router();
+

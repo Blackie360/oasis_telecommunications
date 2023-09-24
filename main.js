@@ -4,6 +4,8 @@ import './src/styles/footer.css';
 import { createHeader } from './src/components/header';
 import { createFooter } from './src/components/footer';
 import './src/styles/scss/styles.scss';
+import { loadAllPages } from './routers/pageLoader';
+import { onNavClick } from './routers/router';
 
 // Import Bootstrap's JS (assuming you're using ES6 modules)
 import * as bootstrap from 'bootstrap';
