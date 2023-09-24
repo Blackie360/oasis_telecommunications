@@ -44,7 +44,7 @@ const handle404 = () => {
 
 // Define and export onNavClick handler
 export const onNavClick = async (pathname) => {
-  const root = document.getElementById('root');
+  const root = document.getElementById('content');
 
   if (!routes.has(pathname)) {
     handle404();
