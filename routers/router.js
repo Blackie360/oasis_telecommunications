@@ -42,8 +42,8 @@ const handle404 = () => {
 </div>`;
 };
 
-// Define and export onNavClick handler
-export const onNavClick = async (pathname) => {
+// Function to conditionally render the page based on the route
+const renderPage = (pathname) => {
   const root = document.getElementById('content');
 
   if (!routes.has(pathname)) {
@@ -65,14 +65,19 @@ export const onNavClick = async (pathname) => {
       myAccountLink.style.display = 'block';
     }
   }
+};
 
+// Define and export onNavClick handler
+export const onNavClick = (pathname) => {
   // Update the URL using the pushState function from history
   pushState({}, '', pathname);
+  // Conditionally render the page
+  renderPage(pathname);
 };
 
 const handleRouting = () => {
   const pathname = window.location.pathname;
-  onNavClick(pathname);
+  renderPage(pathname);
 };
 
 const router = async () => {
